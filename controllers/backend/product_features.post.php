@@ -26,6 +26,7 @@ if ($mode == 'export_range') {
 }
 
 if ($mode === 'export_found') {
+
     if (empty(Tygh::$app['session']['export_ranges'])) {
         Tygh::$app['session']['export_ranges'] = [];
     }
@@ -43,6 +44,6 @@ if ($mode === 'export_found') {
 
     return [
         CONTROLLER_STATUS_OK,
-        'exim.export?section=features&pattern_id=' . Tygh::$app['session']['export_ranges']['products']['pattern_id'],
+        'exim.export?section=features&pattern_id=' . Tygh::$app['session']['export_ranges']['features']['pattern_id'],
     ];
 }
