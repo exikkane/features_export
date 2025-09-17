@@ -10,6 +10,10 @@ if ($mode == 'export_range') {
             Tygh::$app['session']['export_ranges'] = [];
         }
 
+        $data_function_params['feature_types'] = ['G'];
+        list($groups_data,,) = fn_get_product_features(['feature_types' => ['G']]);
+        $feature_ids = array_merge($feature_ids, array_keys($groups_data));
+
         if (empty(Tygh::$app['session']['export_ranges']['features']['pattern_id'])) {
             Tygh::$app['session']['export_ranges']['features'] = ['pattern_id' => 'features'];
         }
@@ -26,9 +30,8 @@ if ($mode == 'export_range') {
 }
 
 if ($mode === 'export_found') {
-
-    if (empty(Tygh::$app['session']['export_ranges'])) {
-        Tygh::$app['session']['export_ranges'] = [];
+    if (empty(Tygh::$app['session']['export_ranges']['features'])) {
+        Tygh::$app['session']['export_ranges']['features'] = [];
     }
 
     if (empty(Tygh::$app['session']['export_ranges']['features']['pattern_id'])) {

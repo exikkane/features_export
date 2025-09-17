@@ -1,6 +1,7 @@
 <?php
 
 use Tygh\Navigation\LastView\Backend;
+use Tygh\Enum\ProductFeatures;
 
 function fn_exim_get_last_view_features_count()
 {
@@ -35,6 +36,10 @@ function fn_exim_get_last_view_feature_ids_condition()
     }
 
     list($data,,) = fn_get_product_features($data_function_params);
+    $data_function_params['feature_types'] = ['G'];
+    list($groups_data,,) = fn_get_product_features($data_function_params);
+
+    $data = array_merge($data, $groups_data);
 
     return [
         'feature_id' => array_keys($data),
