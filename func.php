@@ -36,10 +36,9 @@ function fn_exim_get_last_view_feature_ids_condition()
     }
 
     list($data,,) = fn_get_product_features($data_function_params);
-    $data_function_params['feature_types'] = ['G'];
-    list($groups_data,,) = fn_get_product_features($data_function_params);
+    list($groups_data,,) = fn_get_product_features(['feature_types' => ['G']]);
 
-    $data = array_merge($data, $groups_data);
+    $data = $data + $groups_data;
 
     return [
         'feature_id' => array_keys($data),
